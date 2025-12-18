@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Chitra ❤️</title>
+
+<!-- Handwritten Font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(to bottom, #ffd6e8, #fff);
+  color: #333;
+  text-align: center;
+}
+
+/* Handwritten sections */
+.handwritten {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+}
+
+/* Lock */
+#lock {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  background: #e91e63;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#content {
+  display: none;
+  padding: 30px;
+}
+
+/* Images */
+img {
+  width: 220px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+/* Buttons */
+.soft-btn {
+  background: #ff8fb1;
+  margin-top: 15px;
+  border-radius: 20px;
+}
+
+/* Hidden blocks */
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div id="lock">
+  <h1>🔒 For Chitra Only</h1>
+  <input type="password" id="pass" placeholder="Enter password">
+  <button onclick="unlock()">Enter</button>
+</div>
+
+<div id="content">
+
+  <!-- ONE TIME MESSAGE -->
+  <p id="firstMessage" class="handwritten hidden">
+    This page will open many times,<br>
+    but this message will appear only once —<br>
+    just like the first time you changed my life ❤️
+  </p>
+
+  <!-- BIRTHDAY MESSAGE -->
+  <p id="birthdayMessage" class="handwritten hidden">
+    🎂 Happy Birthday, my beautiful Chitra!<br>
+    Thank you for making this world kinder and my life brighter ❤️
+  </p>
+
+  <h1 id="name"></h1>
+  <h3>Since 03/12/2021</h3>
+
+  <iframe width="300" height="170"
+    src="https://youtu.be/xciwYxZuxog?si=pTPUOCTZhfXiWXrB"
+    frameborder="0" allowfullscreen>
+  </iframe>
+
+  <h2>Our Memories</h2>
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
+  <img src="photo4.jpg">
+  <img src="photo5.jpg">
+
+  <h2>From My Heart</h2>
+  <p class="handwritten">
+  Since <b>03/12/2021</b>, my life has been touched by something rare and beautiful — you.
+  From the day you came into my life, everything started feeling warmer, calmer,
+  and more meaningful.
+  <br><br>
+
+  You are not just beautiful to my eyes, Chitra, but incredibly beautiful by heart.
+  The love you carry, the kindness you show, and the way you treat everyone with respect
+  truly defines who you are.
+  <br><br>
+
+  I deeply admire your nature — the way you behave so kindly with people,
+  the way you care without expecting anything in return,
+  and how your presence alone can make things better.
+  <br><br>
+
+  I know sometimes you get angry a little easily,
+  but even that comes from how pure and real your heart is.
+  I just wish you could be a little gentler with yourself,
+  because to me, you are already perfect.
+  <br><br>
+
+  Every memory we have created since our anniversary is precious to me.
+  Every laugh, every small moment, every phase —
+  I hold all of it close to my heart.
+  <br><br>
+
+  You are my comfort, my happiness, and the most beautiful chapter of my life.
+  I am grateful for you — today, tomorrow, and always.
+  <br><br>
+
+  Forever yours,<br>
+  Karan ❤️
+</p>
+
+
+  <!-- UPSET BUTTON -->
+  <button class="soft-btn" onclick="toggleUpset()">Read this when you're upset 🤍</button>
+
+  <p id="upsetText" class="handwritten hidden">
+    Take a deep breath, Chitra.<br><br>
+    You are deeply loved, always understood,
+    and never alone.<br><br>
+    I'm always on your side ❤️<br>
+    — Karan
+  </p>
+
+</div>
+
+<script>
+const PASSWORD = "chitra0303";
+const BIRTHDAY_DAY = 21;   // <-- tell me
+const BIRTHDAY_MONTH = 5; // <-- tell me (1–12)
+
+function unlock() {
+  if (document.getElementById("pass").value === PASSWORD) {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("content").style.display = "block";
+
+    if (navigator.vibrate) navigator.vibrate([200,100,200]);
+
+    // One-time message
+    if (!localStorage.getItem("opened")) {
+      document.getElementById("firstMessage").classList.remove("hidden");
+      localStorage.setItem("opened", "yes");
+    }
+
+    // Birthday check
+    const today = new Date();
+    if (today.getDate() === BIRTHDAY_DAY && (today.getMonth()+1) === BIRTHDAY_MONTH) {
+      document.getElementById("birthdayMessage").classList.remove("hidden");
+    }
+
+    animateName("Chitra");
+  } else {
+    alert("Wrong password ❤️");
+  }
+}
+
+function animateName(text) {
+  let el = document.getElementById("name");
+  el.innerHTML = "";
+  [...text].forEach((l, i) => {
+    let span = document.createElement("span");
+    span.textContent = l;
+    span.style.fontSize = "42px";
+    span.style.color = "#e91e63";
+    span.style.marginRight = "2px";
+    span.style.opacity = 0;
+    span.style.animation = `fadeIn 0.5s forwards ${i*0.3}s`;
+    el.appendChild(span);
+  });
+}
+
+function toggleUpset() {
+  document.getElementById("upsetText").classList.toggle("hidden");
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes fadeIn {
+  to { opacity: 1; }
+}`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
